@@ -1,0 +1,76 @@
+//-------------------------------------------------------------Main function-------------------------------------------------------------------
+#include "header.h"
+int main()
+{
+        ST *headptr=0;
+        int c; char op,ch;
+        readFile(&headptr);
+        while(1)
+        {
+                printf("\033[35;3m\N**************STUDENT RECORD MENU**************\n");
+                printf("a/A:Add new record\n
+                        d/D:Delete a record\n
+                        s/S:Show the list\n
+                        m/M:Modify a record\n
+                        v/V:Save records\n
+                        t/T:Sort the list\n
+                        l/L:Delete all the records\n
+                        r/R:Reverse the list\ne/E:Exit\n");
+                printf("Enter your choice :\033[0m\n");
+                scanf(" %c",&op);
+                switch(op)
+                {
+                        case 'a':
+                        case 'A':
+                                addNew(&headptr);
+                                break;
+                        case 'd':
+                        case 'D':
+                                deleteNode(&headptr);
+                                break;
+                        case 's':
+                        case 'S':
+                                printNode(headptr);
+                                break;
+                        case 't':
+                        case 'T':
+                                sortList(headptr);
+                                break;
+                        case 'v':
+                        case 'V':
+                                saveFile(headptr);
+                                break;
+                        case 'r':
+                        case 'R':
+                                reverseList(&headptr);
+                                break;
+                        case 'm':
+                        case 'M':
+                                modifyRec(headptr);
+                                break;
+                        case 'l':
+                        case 'L':
+                                deleteAll(&headptr);
+                                break;
+                        case 'e':
+                        case 'E':
+                                printf("S/s:Save and exit\nE/e:Exit without saving\n");
+                                scanf(" %c",&ch);
+                                switch(ch)
+                                {
+                                        case 's':
+                                        case 'S':
+                                                saveFile(headptr);
+                                                exit(0); break;
+                                        case 'e':
+                                        case 'E':
+                                                exit(0);break;
+                                }
+                                break;
+                        default:
+                                printf("\033[31;3m Unknown choice \033[0m\n");
+                                break;
+                }
+
+        }
+}
