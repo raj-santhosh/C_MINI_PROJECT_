@@ -1,0 +1,109 @@
+//--------------------------Modify Record--------------------------------
+void modifyRec(ST *ptr)
+{
+        char c,name[20];
+        int roll,f=0;
+        ST *after;
+        printf("Enter which record to search for modification.\n");
+        printf("R/r:Search by rollnumber\nN/n:Search by name\nP/p:Search by percentage\n");
+        scanf(" %c",&c);
+
+        switch(c)
+        {
+                case 'r':
+                case 'R':
+n:                      {
+                                printf("Enter rollno:");
+                                        scanf("%d",&roll);
+                                while(ptr)
+                                {
+                                        if(roll==ptr->rollno)
+                                        {
+                                                printf("%d %s %f\n",ptr->rollno,ptr->name,ptr->percentage);
+                                                printf("Enter name and percentage to modify:");
+                                                scanf("%s %f",ptr->name,&ptr->percentage);
+                                                printf("\nModified successfully...\n");
+                                                return;
+                                        }
+                                        ptr=ptr->next;
+                                }
+                                printf("\033[32m\nInvalid rollno...!\n\033[0m");
+                        }
+                        break;
+                case 'N':
+                case 'n':
+                        {
+                                printf("Enter a name.\n");
+                                scanf("%s",name);
+                                while(ptr)
+                                {
+                                        if(strcmp(name,ptr->name)==0)
+                                        {
+                                                after=ptr->next;
+                                                while(after)
+                                                {
+                                                        if(strcmp(ptr->name,after->name)==0)
+                                                        {
+                                                                f++;
+                                                                if(f==0)
+                                                                {
+                                                                        printf("More than one records.!\n");
+                                                                        printf("\n%d %s %f",ptr->rollno,ptr->name,ptr->percentage);
+                                                                }
+                                                                printf("%d %s %f\n",after->rollno,after->name,after->percentage);
+                                                        }
+                                                        after=after->next;
+                                                }
+                                                if(f>0)
+                                                        goto n;
+                                                printf("\n%d %s %f\n",ptr->rollno,ptr->name,ptr->percentage);
+                                                printf("Enter name and percentage :");
+                                                scanf("%s %f",ptr->name,&ptr->percentage);
+                                                printf("\n Modified successfuly..\n");
+                                                return;
+                                        }
+                                        ptr = ptr->next;
+                                }
+                                printf("\033[32m\nInvalid name...!\n \033[0m");
+                        }
+                        break;
+                case 'P':
+                case 'p':
+                        {
+                                float p;
+                                printf("Enter a percentage.\n");
+                                scanf("%f",&p);
+                                while(ptr)
+                                {
+                                        if(p==ptr->percentage)
+                                        {
+                                                after=ptr->next;
+                                                while(after)
+                                                {
+                                                        if(ptr->percentage==after->percentage)
+                                                        {
+                                                                f++;
+                                                                if(f==1)
+                                                                {
+                                                                        printf("More than one records.!\n");
+                                                                        printf("\n%d %s %f",ptr->rollno,ptr->name,ptr->percentage);
+                                                                }
+                                                                printf("%d %s %f\n",after->rollno,after->name,after->percentage);
+                                                        }
+                                                        after=after->next;
+                                                }
+                                                if(f>0)
+                                                        goto n;
+                                                printf("\n%d %s %f\n",ptr->rollno,ptr->name,ptr->percentage);
+                                                printf("Enter name and percentage :");
+                                                scanf("%s %f",ptr->name,&ptr->percentage);
+                                                printf("Modifies successfully...\n");
+                                                return ;
+                                        }
+                                        ptr=ptr->next;
+                                }
+                                printf("\033[32m\nInvalid name...!\n \033[0m");
+                        }
+                        break;
+        }
+}
