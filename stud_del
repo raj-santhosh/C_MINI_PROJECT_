@@ -1,0 +1,85 @@
+//-------------------------delete Node----------------------------------
+void deleteNode(ST **ptr)
+{
+        if(*ptr==0){
+                printf("No records available..\n");
+                return;
+        }
+        char name[20],ch;
+        int num,f=0;
+        printf("r/R:Enter roll number to delete\nN/n:Enter name to delete:\n");
+        scanf(" %c",&ch);
+        ST *del=*ptr ,*prev;
+        ST *after;
+        switch(ch)
+        {
+                case 'r':
+                case 'R':
+l:
+                        {
+                                printf("Enter rollno to delete:\n");
+                                scanf("%d",&num);
+                                while(del)
+                                {
+                                        if(num==del->rollno)
+                                        {
+                                                if(del==*ptr)
+                                                        *ptr=del->next;
+                                                else
+                                                        prev->next=del->next;
+
+                                                free(del);
+                                                printf("Record deleted...\n");
+                                                return;
+                                        }
+                                        prev=del;
+                                        del=del->next;
+                                }
+                                printf("Rollno not present.\n");
+                        }
+                        break;
+                case 'n':
+                case 'N':
+                        {
+                                printf("Enter name to delete:\n");
+                                scanf("%s",name);
+                                while(del)
+                                {
+                                        if(strcmp(name,del->name)==0)
+                                        {
+                                                after=del->next;
+                                                while(after)
+                                                {
+                                                        if(strcmp(del->name,after->name)==0)
+                                                        {
+                                                                f++;
+                                                                if(f==1)
+                                                                {
+                                                                        printf("Name present more than one time.\n");
+                                                                        printf("%d %s %f\n",del->rollno,del->name,del->percentage);
+                                                                }
+                                                                printf("%d %s %f\n",after->rollno,after->name,after->percentage);
+                                                        }
+                                                        after=after->next;
+
+                                                }
+                                                if(f>0)
+                                                        goto l;
+                                                if(*ptr==del)
+                                                        *ptr=del->next;
+                                                else
+                                                        prev->next=del->next;
+
+                                                free(del);
+                                                printf("Records deleted completed.\n");
+                                                return;
+                                        }
+                                        prev=del;
+                                        del=del->next;
+                                        after=del->next;
+                                }
+                                printf("Name not present\n");
+                        }
+                        break;
+        }
+}
