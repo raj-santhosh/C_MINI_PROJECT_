@@ -1,0 +1,20 @@
+//---------------------------Delete all records-------------------------------
+void deleteAll(ST **ptr)
+{
+        if(ptr==0)
+        {
+                printf("No records found.\n");
+                return ;
+        }
+        int c=1;
+        ST *del=*ptr;
+        while(del)
+        {
+                *ptr=del->next;
+                printf("Node deleted :%d\n",c++);
+                free(del);
+                del=*ptr;
+        }
+        printf("\033[31m  All nodes deleted...\033[0m\n");
+
+}
