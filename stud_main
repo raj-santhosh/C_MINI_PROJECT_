@@ -1,4 +1,4 @@
-//-------------------------------------------------------------Main function-------------------------------------------------------------------
+//----------------------------------------------Main function-------------------------------------------------------------------
 #include "header.h"
 int main()
 {
@@ -6,17 +6,19 @@ int main()
         int c; char op,ch;
         readFile(&headptr);
         while(1)
-        {
-                printf("\033[35;3m\N**************STUDENT RECORD MENU**************\n");
-                printf("a/A:Add new record\n
-                        d/D:Delete a record\n
-                        s/S:Show the list\n
-                        m/M:Modify a record\n
-                        v/V:Save records\n
-                        t/T:Sort the list\n
-                        l/L:Delete all the records\n
-                        r/R:Reverse the list\ne/E:Exit\n");
-                printf("Enter your choice :\033[0m\n");
+      {
+                printf("\033[35;3m**************STUDENT RECORD MENU***************\n");
+                printf("|       a/A:Add new record                      |\n");
+                printf("|       d/D:Delete a record                     |\n");
+                printf("|       s/S:Show the list                       |\n");
+                printf("|       m/M:Modify a record                     |\n");
+                printf("|       v/V:Save records                        |\n");
+                printf("|       t/T:Sort the list                       |\n");
+                printf("|       l/L:Delete all the records              |\n");
+                printf("|       r/R:Reverse the list                    |\n");
+                printf("|       e/E:Exit                                |\n");
+                printf("|_______________________________________________|\n\033[0m");
+                printf("Enter your choice :\n");
                 scanf(" %c",&op);
                 switch(op)
                 {
