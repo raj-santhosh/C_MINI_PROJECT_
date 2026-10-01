@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<unistd.h>
+typedef struct student
+{
+        int rollno;
+        char name[20];
+        float percentage;
+        struct student *next;
+}ST;
+//-----------------------Main function--------------------------------
+void addNew(ST**);
+void printNode(ST*);
+void deleteNode(ST**);
+void saveFile(ST*);
+void deleteAll(ST**);
+void reverseList(ST**);
+void sortList(ST*);
+void modifyRec(ST*);
+
+//------------------------Sub function-----------------------------------
+int countNode(ST*);
+void readFile(ST**);
